@@ -68,7 +68,7 @@
       "cc2.8xlarge" : { "Arch": "HVM64" }
     },
     "AWSRegionArch2AMI": {
-      "us-east-1"       : { "PV64": "ami-f0ea638a", "HVM64": "ami-55ef662f" },
+      "us-east-1"       : { "PV64": "ami-f0ea638a", "HVM64": "ami-03a6eaae9938c858c" },
       "us-west-2"       : { "PV64": "ami-da4694a2", "HVM64": "ami-bf4193c7" },
       "us-west-1"       : { "PV64": "ami-3b1e265b", "HVM64": "ami-a51f27c5" },
       "eu-west-1"       : { "PV64": "ami-889622f1", "HVM64": "ami-1a962263" },
@@ -102,7 +102,7 @@
             "Action": ["sts:AssumeRole"]
           }]
         },
-        "ManagedPolicyArns":["arn:aws:iam::aws:policy/AmazonEC2ContainerServiceFullAccess","arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess"],
+        "ManagedPolicyArns":["arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryPowerUser","arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess"],
         "Path": "/",
         "Policies": [{
           "PolicyName": "JenkinsRolePolicy",
@@ -449,11 +449,12 @@
 
               "# Install Jenkins\n",
               "wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo\n",
-              "rpm --import http://pkg.jenkins-ci.org/redhat/jenkins-ci.org.key\n",
-              "yum install -y jenkins\n",
+	      "rpm --import http://pkg.jenkins-ci.org/redhat/jenkins-ci.org.key\n",
+              "yum install fontconfig java-11-*",
+	      "yum install jenkins"
 
               "# Add Jenkins user to Docker group\n",
-              "usermod -a -G docker jenkins\n",
+              "usermod -a -G docker jenkins\n"
               "service jenkins start\n",
               "chkconfig jenkins on\n",
 
