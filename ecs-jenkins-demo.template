@@ -454,7 +454,7 @@
 	      "yum install jenkins"
 
               "# Add Jenkins user to Docker group\n",
-              "usermod -a -G docker jenkins\n"
+              "usermod -aG docker jenkins\n"
               "service jenkins start\n",
               "chkconfig jenkins on\n",
 
